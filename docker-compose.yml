@@ -2,18 +2,18 @@ version: "3.7"
 
 services:
   app:
-    build: .
+    build: ./udagram-api
     ports:
       - "8100:8100"
     restart: always
     depends_on:
       - postgres
     env_file:
-      - .env
+      - ./udagram-api/.env
   postgres:
     image: postgres
     restart: always
     ports: 
       - '5432:5432'
     env_file:
-      - .env
+      - ./udagram-api/.env
