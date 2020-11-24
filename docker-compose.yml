@@ -1,15 +1,30 @@
 version: "3.7"
 
 services:
+  reverseproxy:
+    build: ./udagram-reverseproxy
+    restart: always
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./udagram-frontend
+    ports:
+      - "8100:80"
+    restart: always
+    depends_on:
+      - app
+
   app:
     build: ./udagram-api
-    ports:
-      - "8100:8100"
     restart: always
+    ports:
+      - "3000:3000"
     depends_on:
       - postgres
     env_file:
       - ./udagram-api/.env
+
   postgres:
     image: postgres
     restart: always
