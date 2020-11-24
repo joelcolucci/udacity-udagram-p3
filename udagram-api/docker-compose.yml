@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8100:8100"
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+  postgres:
+    image: postgres
+    restart: always
+    ports: 
+      - '5432:5432'
+    env_file:
+      - .env
