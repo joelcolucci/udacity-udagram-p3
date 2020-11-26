@@ -1,10 +1,15 @@
-FROM node:12
+FROM node:12-alpine
 
 WORKDIR /app
 
 COPY package.json ./
 
-RUN npm install
+RUN apk --no-cache --virtual build-dependencies add \
+    python \
+    make \
+    g++ \
+    && npm install \
+    && apk del build-dependencies
 
 COPY . .
 
