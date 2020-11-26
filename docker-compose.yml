@@ -17,11 +17,12 @@ services:
 
   app:
     build: ./udagram-api
-    restart: always
     ports:
       - "3000:3000"
     depends_on:
       - postgres
+    volumes:
+      - $HOME/.aws:/root/.aws
     env_file:
       - ./udagram-api/.env
 
