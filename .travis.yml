@@ -22,7 +22,7 @@ script:
   - docker build -t udagram-user-service ./udagram-user-service
   - docker tag udagram-user-service joelcolucci/udagram-user-service:latest
 
-  - docker build -t udagram-frontend ./udagram-front-end
+  - docker build -t udagram-frontend ./udagram-frontend
   - docker tag udagram-frontend joelcolucci/udagram-frontend:latest
 
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
