@@ -13,18 +13,19 @@ services:
       - "8100:80"
     restart: always
     depends_on:
-      - app
+      - user-service
 
-  app:
-    build: ./udagram-api
+  user-service:
+    build: ./udagram-user-service
     ports:
-      - "3000:3000"
+      - "5000:5000"
+    restart: always
     depends_on:
       - postgres
     volumes:
       - $HOME/.aws:/root/.aws
     env_file:
-      - ./udagram-api/.env
+      - ./udagram-user-service/.env
 
   feed-service:
     build: ./udagram-feed-service
@@ -44,4 +45,4 @@ services:
     ports: 
       - "5432:5432"
     env_file:
-      - ./udagram-api/.env
+      - ./udagram-user-service/.env
