@@ -26,10 +26,22 @@ services:
     env_file:
       - ./udagram-api/.env
 
+  feed-service:
+    build: ./udagram-feed-service
+    ports:
+        - "4000:4000"
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - $HOME/.aws:/root/.aws
+    env_file:
+      - ./udagram-feed-service/.env
+
   postgres:
     image: postgres
     restart: always
     ports: 
-      - '5432:5432'
+      - "5432:5432"
     env_file:
       - ./udagram-api/.env
